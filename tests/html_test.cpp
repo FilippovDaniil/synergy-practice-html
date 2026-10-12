@@ -120,3 +120,10 @@ TEST(RenderHtml, SwitcherScriptIsShort) {
     const std::string js = html.substr(start, end - start);
     EXPECT_LE(countOccurrences(js, "\n"), 20u);
 }
+
+TEST(RenderHtml, PhonesRenderedAsTelLinks) {
+    auto org = testdata::validOrganization();
+    org.phones = {"+7 495 800-10-01"};
+    const std::string html = renderHtml(org);
+    EXPECT_NE(html.find("<a href=\"tel:+74958001001\">+7 495 800-10-01</a>"), std::string::npos);
+}

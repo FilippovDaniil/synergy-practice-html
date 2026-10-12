@@ -131,7 +131,15 @@ std::string renderHtml(const Organization& org) {
     } else {
         h += escapeHtml(org.website);
     }
-    h += "</p>\n  </section>\n\n";
+    h += "</p>\n";
+    for (const std::string& phone : org.phones) {
+        std::string tel;
+        for (char ch : phone) {
+            if ((ch >= '0' && ch <= '9') || ch == '+') tel += ch;
+        }
+        h += "    <p>Телефон: <a href=\"tel:" + tel + "\">" + escapeHtml(phone) + "</a></p>\n";
+    }
+    h += "  </section>\n\n";
 
     // Font comparison
     h += "  <section class=\"card\" id=\"fonts\">\n    <h2>Сравнение шрифтов</h2>\n";

@@ -20,6 +20,7 @@ struct Organization {
     std::vector<std::string> activities;
     std::string address;
     std::string website;
+    std::vector<std::string> phones;  // optional
     Font officialFont;
     std::vector<Font> alternativeFonts;  // exactly 5
 };

@@ -88,6 +88,20 @@ Organization parseOrganization(const std::string& text) {
     org.address = requireString(root, "address", "");
     org.website = requireString(root, "website", "");
 
+    if (root.contains("phones")) {
+        const json& phones = root.at("phones");
+        if (!phones.is_array()) {
+            throw std::runtime_error("field 'phones' must be an array");
+        }
+        for (std::size_t i = 0; i < phones.size(); ++i) {
+            if (!phones[i].is_string()) {
+                throw std::runtime_error("field 'phones[" + std::to_string(i) +
+                                         "]' must be a string");
+            }
+            org.phones.push_back(phones[i].get<std::string>());
+        }
+    }
+
     if (!root.contains("activities")) {
         throw std::runtime_error("missing required field 'activities'");
     }

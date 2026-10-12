@@ -93,3 +93,12 @@ TEST(Organization, SixAlternativeFontsThrows) {
 TEST(Organization, MissingFileThrows) {
     EXPECT_THROW(gen::loadOrganization("no/such/file.json"), std::runtime_error);
 }
+
+TEST(Organization, PhonesAreOptional) {
+    EXPECT_TRUE(testdata::validOrganization().phones.empty());
+    auto j = testdata::validJson();
+    j["phones"] = {"+7 495 800-10-01"};
+    EXPECT_EQ(parseOrganization(j.dump()).phones.size(), 1u);
+    j["phones"] = "not an array";
+    expectError(j.dump(), "'phones' must be an array");
+}
