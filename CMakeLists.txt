@@ -34,6 +34,7 @@ FetchContent_MakeAvailable(nlohmann_json googletest)
 add_library(gen_lib STATIC
     src/organization.cpp
     src/html.cpp
+    src/css.cpp
 )
 target_include_directories(gen_lib PUBLIC include)
 target_link_libraries(gen_lib PUBLIC nlohmann_json::nlohmann_json)
@@ -47,6 +48,7 @@ enable_testing()
 add_executable(gen_tests
     tests/organization_test.cpp
     tests/html_test.cpp
+    tests/css_test.cpp
 )
 target_link_libraries(gen_tests PRIVATE gen_lib GTest::gtest_main)
 

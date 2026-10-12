@@ -70,6 +70,7 @@ std::string renderHtml(const Organization& org) {
     h += "  <meta charset=\"UTF-8\">\n";
     h += "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n";
     h += "  <title>" + escapeHtml(org.shortName) + " — место практической подготовки</title>\n";
+    h += "  <link rel=\"icon\" href=\"data:,\">\n";
     h += "  <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n";
     h += "  <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n";
     h += "  <link rel=\"stylesheet\" href=\"" + escapeHtml(googleFontsUrl(org)) + "\">\n";

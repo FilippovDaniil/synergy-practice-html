@@ -1,0 +1,17 @@
+{
+  "fullName": "Черновик: название организации",
+  "shortName": "Черновик",
+  "legalForm": "Черновик",
+  "description": "Черновые данные — заменяются в части 5.",
+  "activities": ["Черновик"],
+  "address": "Черновик",
+  "website": "https://synergyuniversity.ru",
+  "officialFont": { "name": "Raleway", "googleFontsFamily": "Raleway:wght@400;700", "category": "геометрический гротеск", "note": "" },
+  "alternativeFonts": [
+    { "name": "Roboto", "googleFontsFamily": "Roboto:wght@400;700", "category": "неогротеск", "why": "" },
+    { "name": "PT Serif", "googleFontsFamily": "PT+Serif:wght@400;700", "category": "антиква", "why": "" },
+    { "name": "Montserrat", "googleFontsFamily": "Montserrat:wght@400;700", "category": "геометрический гротеск", "why": "" },
+    { "name": "Open Sans", "googleFontsFamily": "Open+Sans:wght@400;700", "category": "гуманистический гротеск", "why": "" },
+    { "name": "JetBrains Mono", "googleFontsFamily": "JetBrains+Mono:wght@400;700", "category": "моноширинный", "why": "" }
+  ]
+}
