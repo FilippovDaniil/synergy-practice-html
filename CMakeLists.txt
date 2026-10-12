@@ -5,6 +5,10 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+if(MSVC)
+    add_compile_options(/utf-8)
+endif()
+
 include(FetchContent)
 
 FetchContent_Declare(
@@ -26,13 +30,23 @@ set(INSTALL_GTEST OFF CACHE BOOL "" FORCE)
 
 FetchContent_MakeAvailable(nlohmann_json googletest)
 
+# Generator library (pure functions, testable without the file system)
+add_library(gen_lib STATIC
+    src/organization.cpp
+)
+target_include_directories(gen_lib PUBLIC include)
+target_link_libraries(gen_lib PUBLIC nlohmann_json::nlohmann_json)
+
 # Executable
 add_executable(html_generator src/main.cpp)
+target_link_libraries(html_generator PRIVATE gen_lib)
 
 # Tests
 enable_testing()
-add_executable(gen_tests tests/smoke_test.cpp)
-target_link_libraries(gen_tests PRIVATE GTest::gtest_main)
+add_executable(gen_tests
+    tests/organization_test.cpp
+)
+target_link_libraries(gen_tests PRIVATE gen_lib GTest::gtest_main)
 
 include(GoogleTest)
 gtest_discover_tests(gen_tests)
