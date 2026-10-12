@@ -33,6 +33,7 @@ FetchContent_MakeAvailable(nlohmann_json googletest)
 # Generator library (pure functions, testable without the file system)
 add_library(gen_lib STATIC
     src/organization.cpp
+    src/html.cpp
 )
 target_include_directories(gen_lib PUBLIC include)
 target_link_libraries(gen_lib PUBLIC nlohmann_json::nlohmann_json)
@@ -45,6 +46,7 @@ target_link_libraries(html_generator PRIVATE gen_lib)
 enable_testing()
 add_executable(gen_tests
     tests/organization_test.cpp
+    tests/html_test.cpp
 )
 target_link_libraries(gen_tests PRIVATE gen_lib GTest::gtest_main)
 

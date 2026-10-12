@@ -26,6 +26,13 @@ struct Organization {
 
 inline constexpr std::size_t kAlternativeFontCount = 5;
 
+// Official font first, then the alternatives (6 fonts in total).
+std::vector<Font> allFonts(const Organization& org);
+
+// CSS font-family stack with a generic fallback derived from the category,
+// e.g. "'PT Serif', serif".
+std::string fontStack(const Font& font);
+
 // Parses organization data from a JSON string. Throws std::runtime_error with
 // a readable message on malformed JSON or missing/invalid fields.
 Organization parseOrganization(const std::string& json);

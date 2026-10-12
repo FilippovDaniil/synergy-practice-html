@@ -50,6 +50,25 @@ Font parseFont(const json& obj, const std::string& ctx, const char* noteKey) {
 
 }  // namespace
 
+std::vector<Font> allFonts(const Organization& org) {
+    std::vector<Font> fonts;
+    fonts.reserve(1 + org.alternativeFonts.size());
+    fonts.push_back(org.officialFont);
+    fonts.insert(fonts.end(), org.alternativeFonts.begin(), org.alternativeFonts.end());
+    return fonts;
+}
+
+std::string fontStack(const Font& font) {
+    const std::string& c = font.category;
+    const char* generic = "sans-serif";
+    if (c.find("моно") != std::string::npos || c.find("mono") != std::string::npos) {
+        generic = "monospace";
+    } else if (c.find("антиква") != std::string::npos || c.find("serif") != std::string::npos) {
+        generic = "serif";
+    }
+    return "'" + font.name + "', " + generic;
+}
+
 Organization parseOrganization(const std::string& text) {
     json root;
     try {
